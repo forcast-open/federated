@@ -1,0 +1,63 @@
+import numpy as np
+import pandas as pd
+import torch
+from torch.utils.data.dataset import Dataset
+from torch.autograd import Variable
+from sklearn.datasets import load_iris
+
+class StructuredDataset(Dataset):
+    """Custom dataset for structured data."""
+    
+    def __init__(self, X, y, transform=None):
+        """
+        Args:
+            numpy_array (array): Matrix of scructured features.
+            numpy_array (array): List of targets.
+            transform (callable, optional): Optional transform to be applied
+                on a sample.
+        """
+        # Check inputs are 2D and 1D arrays (X and y respectively)
+        assert len(X.shape) == 2, 'X value expected two dimensional numpy matrix'
+        assert len(y.shape) == 1, 'y value expected one dimensional numpy array'
+        # Check same number of datapoints
+        assert y.shape[0] == X.shape[0], 'X and y do not have the same number of datapoints'
+        # Set attributes
+        self.data = Variable(torch.from_numpy(X)).float()
+        self.targets = Variable(torch.from_numpy(y)).long()
+        self.num_classes = len(np.unique(self.targets))
+        self.num_features = self.data.shape[1]
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, idx):
+        if torch.is_tensor(idx):
+            idx = idx.tolist()
+        
+        sample = (self.data[idx], self.targets[idx])
+
+        if self.transform:
+            sample = self.transform(sample)
+
+        return sample
+    
+    def __repr__(self):
+        message = ['Structured Dataset',
+                   '\n\t'+'Number of datapoints: '+str(self.__len__()),
+                   '\n\t'+'Number of features: '+str(self.num_features),
+                   '\n\t'+'Number of classes: '+str(self.num_classes)]
+        return ''.join(message)
+
+
+#### Load Iris Dataser ####
+def load_scikit_iris():
+    data_dict = load_iris()
+    X = data_dict['data']
+    y = data_dict['target']
+    target_names  = data_dict['target_names']
+    feature_names = data_dict['feature_names']
+    df_features = pd.DataFrame(dict(zip(feature_names, X.T)))
+    df_target = pd.DataFrame(dict(zip(['target','label'],[map(lambda i: target_names[i], y), y])))
+    df_data = pd.concat([df_features, df_target], axis=1)
+    return (X, y, df_data, target_names)
