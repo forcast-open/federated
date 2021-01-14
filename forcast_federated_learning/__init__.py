@@ -37,7 +37,7 @@ class FederatedModel:
 
 	def load_state_dict(self, model_dict):
 		self.model.load_state_dict(model_dict)
-
+	
 	def server_agregate(self, client_weights, client_lens):
 		if self.fed_optimizer == 'fed_avg':
 			"""
