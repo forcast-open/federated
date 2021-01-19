@@ -2,6 +2,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+seed = 0
+torch.manual_seed(seed)
+
 class NN(nn.Module):
     # define nn
     def __init__(self, input_dim, output_dim):
