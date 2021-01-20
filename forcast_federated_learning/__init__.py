@@ -2,6 +2,7 @@
 from .datasets import *
 from .models import *
 from .utils import *
+from .data import *
 
 #### Main classes of the library ####
 
