@@ -75,7 +75,8 @@ class FederatedModel:
 class LocalModel:
 	def __init__(	self, 
 					model, 
-					model_type       = 'nn', 
+					model_type       = 'nn',
+					loss_fn          = nn.CrossEntropyLoss(),
 					optimizer_name   = 'Adam', 
 					optimizer_params = {'lr': 0.01},
 					train_params     = {'epochs': 4},
@@ -84,7 +85,7 @@ class LocalModel:
 		## Model
 		self.model      = model
 		self.model_type = model_type
-		self.loss_fn    = nn.CrossEntropyLoss() # F.nll_loss
+		self.loss_fn    = loss_fn # F.nll_loss
 		# Train parameters
 		self.train_params = train_params
 

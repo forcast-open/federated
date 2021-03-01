@@ -14,7 +14,7 @@ def random_clients_data(data_len, num_clients, seed=0):
 	'''
 	This function creates a random distribution 
 	for the clients, i.e. number of images each client 
-	possess.
+	has.
 
 	Args:
 		data_len: size of the data
