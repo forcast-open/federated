@@ -5,6 +5,7 @@ from .utils import *
 from .data import *
 from .security import *
 from .optim import *
+from .encryption import *
 
 #### Main classes of the library ####
 
