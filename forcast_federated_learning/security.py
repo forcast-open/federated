@@ -10,10 +10,10 @@ def PrivacyEngine(fed_model, **kwargs):
 		max_grad_norm = [max_grad_norm]
 
 	# Secure random number generator
-	if 'security_rng' in list(kwargs.keys()):
-		security_rng = kwargs['security_rng']
+	if 'secure_rng' in list(kwargs.keys()):
+		secure_rng = kwargs['secure_rng']
 	else: 
-		security_rng = False
+		secure_rng = False
 
 	privacy_engine = OpacusPrivacyEngine(
 										fed_model.model,
@@ -23,7 +23,7 @@ def PrivacyEngine(fed_model, **kwargs):
 										noise_multiplier = kwargs['noise_multiplier'],
 										max_grad_norm    = max_grad_norm,
 										target_delta     = kwargs['target_delta'],
-										secure_rng       = security_rng,
+										secure_rng       = secure_rng,
 									)
 	
 	return privacy_engine

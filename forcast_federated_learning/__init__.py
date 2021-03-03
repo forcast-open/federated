@@ -12,6 +12,7 @@ from .encryption import *
 # Imports for the classes
 import numpy as np
 import pandas as pd
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from opacus import PrivacyEngine
@@ -59,7 +60,7 @@ class FederatedModel:
 		else:
 			return predict_prob, predict
 	
-	def server_agregate(self, client_weights, client_lens):
+	def server_agregate(self, client_weights, client_lens, secret_key=None):
 		if self.fed_optimizer == 'fed_avg':
 			"""
 			This function has aggregation method 'wmean'
@@ -68,10 +69,21 @@ class FederatedModel:
 			total = sum(client_lens)
 			n     = len(client_weights)
 			global_dict = self.state_dict()
-			for k in global_dict.keys():
-				global_dict[k] = torch.stack([client_weights[i][k].float()*(n*client_lens[i]/total) for i in range(n)], 0).mean(0)
-			self.load_state_dict(global_dict)
 
+			if isinstance(client_weights[0], EncStateDict):
+				assert (secret_key is not None), 'secret_key needs to be given as a parameter to agregate EncStateDicts.'
+				enc_state_dict = 0
+				for enc_client_weight, client_len in zip(client_weights, client_lens):
+					enc_state_dict = enc_state_dict + (client_len/total) * enc_client_weight
+				# decrypt only the result
+				state_dict = enc_state_dict.decrypt(secret_key)
+				self.load_state_dict(state_dict)
+
+
+			else:
+				for k in global_dict.keys():
+					global_dict[k] = torch.stack([client_weights[i][k].float()*(n*client_lens[i]/total) for i in range(n)], 0).mean(0)
+				self.load_state_dict(global_dict)
 
 class LocalModel:
 	def __init__(	self, 
