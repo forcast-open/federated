@@ -202,3 +202,6 @@ def get_context(scheme_type         = ts.SCHEME_TYPE.CKKS,
 	assert context.is_public(), 'Error context need to be public (with no secret key) to be shared.'
 
 	return context, secret_key # return public context and private key
+
+def load_context(serialized_context):
+	return ts.Context.load(serialized_context)

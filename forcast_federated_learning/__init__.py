@@ -193,6 +193,9 @@ class LocalModel:
 			virtual_batch_size = self.privacy_engine.batch_size
 			# assert virtual_batch_size % batch_size == 0, 'virtual_batch_size should be divisible by batch_size'
 			# virtual_batch_rate = int(virtual_batch_size / batch_size)
+			self.privacy_engine.to(device)
+			if self.privacy_engine.secure_rng is False:
+				self.privacy_engine.random_number_generator = torch.Generator(device)
 			for e in range(epochs):
 				for i, (data, target) in enumerate(data_loader):
 					data, target = data.to(device), target.to(device)
