@@ -81,7 +81,8 @@ class ImageDataset(Dataset):
 		assert len(X.shape) in [3, 4], 'X value expected three or four dimensional numpy matrix'
 		assert len(y.shape) == 1, 'y value expected one dimensional numpy array'
 		# Expand dim if X is 3D
-		X = np.expand_dims(X,1)
+		if len(X.shape) == 3:
+			X = np.expand_dims(X,1)
 		# Check same number of datapoints
 		assert y.shape[0] == X.shape[0], 'X and y do not have the same number of datapoints'
 		# Set attributes
