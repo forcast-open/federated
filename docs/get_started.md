@@ -8,3 +8,8 @@ concepts and APIs using practical examples. Make sure to follow the
     introduces the key parts of the Federated Learning (FL) API, and
     demonstrates how to use FFL to simulate federated learning on federated
     MNIST data.
+
+
+## Federated-Api
+
+For a realist simulation and an example of a deployable api of the server side service of a federated training procedure, check out the [federated-api](https://github.com/forcast-open/federated-api) repository.
