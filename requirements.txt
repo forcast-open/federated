@@ -1,6 +1,6 @@
 attrs==20.3.0
 dataclasses==0.8
-importlib-metadata==3.4.0
+importlib-metadata==4.0.1
 iniconfig==1.1.1
 joblib==1.0.0
 numpy==1.19.4
