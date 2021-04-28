@@ -1,0 +1,3 @@
+[submodule "federated-api"]
+	path = federated-api
+	url = https://github.com/forcast-open/federated-api
