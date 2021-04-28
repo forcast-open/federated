@@ -37,13 +37,13 @@ Note: To exit the virtual environment, run `deactivate`.
 ### 3. Install the FFL Python package.
 
 <pre class="prettyprint lang-bsh">
-<code class="devsite-terminal tfo-terminal-venv">pip install --upgrade forcast_federated_learning</code>
+<code class="devsite-terminal tfo-terminal-venv">pip install --upgrade ffl</code>
 </pre>
 
 ### 4. Test FFL.
 
 <pre class="prettyprint lang-bsh">
-<code class="devsite-terminal tfo-terminal-venv">python -c "import forcast_federated_learning as ffl; print(ffl.FederatedModel())"</code>
+<code class="devsite-terminal tfo-terminal-venv">python -c "import forcast_federated_learning as ffl; print(ffl.FederatedModel(None))"</code>
 </pre>
 
 Success: The latest FFL Python package is now installed.
@@ -93,7 +93,7 @@ Note: To exit the virtual environment, run `deactivate`.
 ### 5. Test FFL.
 
 <pre class="prettyprint lang-bsh">
-<code class="devsite-terminal tfo-terminal-venv">python -c "import forcast_federated_learning as ffl; print(ffl.FederatedModel())"</code>
+<code class="devsite-terminal tfo-terminal-venv">python -c "import forcast_federated_learning as ffl; print(ffl.FederatedModel(None))"</code>
 </pre>
 
 Success: The latest FFL Python package is now installed.

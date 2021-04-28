@@ -10,11 +10,11 @@ FFL enables developers to use low level model aggregation into a federated model
 
 ## Installation
 
-See the [install](docs/install.md) documentation for instructions on how to
+See the [install](https://github.com/forcast-open/federated/blob/master/docs/install.md) documentation for instructions on how to
 install FFL as a package or build FFL from
 source.
 
 ## Getting Started
 
-See the [get started](docs/get_started.md) documentation for instructions on
+See the [get started](https://github.com/forcast-open/federated/blob/master/docs/get_started.md) documentation for instructions on
 how to use FFL.
