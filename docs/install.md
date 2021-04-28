@@ -4,7 +4,7 @@ There are a few ways to set up your environment to use Forcast Federated Learnin
 
 *   The easiest way to learn and use FFL requires no installation; run the
     FFL tutorials directly in your browser using
-    [Google Colaboratory]().
+    [Google Colaboratory](https://colab.research.google.com/).
 *   To use FFL on a local machine,
     [install the FFL package](#install-ffl-using-pip) with
     Python's `pip` package manager.
